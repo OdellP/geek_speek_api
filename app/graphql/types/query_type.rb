@@ -6,6 +6,11 @@ module Types
 
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
+    field :users, [UserType], null: false 
+
+    field :user, Types::UserType, null: false do
+      argument :id, ID, required: true
+    end
 
     field :speeks, Types::SpeekType, null: false do
       description 'A query that selects all speeks'
@@ -21,6 +26,14 @@ module Types
 
     def speeks_count
       Speek.count
+    end
+
+    def users
+      User.all
+    end
+
+    def user(id:)
+      User.find(id)
     end
   end
 end
