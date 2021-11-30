@@ -16,6 +16,10 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "associations" do
+    it { is_expected.to have_many :speeks }
+  end
+
   describe "length validations" do
     it { is_expected.to validate_length_of(:email).is_at_most(80) }
     it { is_expected.to validate_length_of(:first_name).is_at_least(2).with_message("Please add more than 1 character") }
